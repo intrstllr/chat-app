@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <div  id="mainList">   
     <header>
-      <ul class="massages">
-        <li v-for="msg in messages" :key="msg.id">{{ msg.body }}</li>
+      <ul class="massages__list">
+        <li v-for="msg02 in messages02" :key="msg02.id">{{ msg02.body }}
+          <span><button class="btndel" @click.prevent="deleteMessage(msg.id)">
+            delete</button></span></li>
       </ul>
-
+      <div class="indent"></div>
       <form class="form">
         <div class="name">user2</div>
         <input type="text" class="pole" autocomplete="off" v-model="message" />
@@ -19,16 +21,27 @@ export default {
   data() {
     return {
       message: "",
-      messages: [],
+      messages02: localStorage.getItem('messages02') ? 
+      JSON.parse(localStorage.getItem('messages02')) : []
     };
   },
   methods: {
     sendMessage() {
-      let msg = {};
-      msg.id = Date.now();
-      msg.body = this.message;
-      this.messages.push(msg);
+      let msg02 = {};
+      msg02.id = Date.now();
+      msg02.body = this.message;
+      this.messages02.push(msg02);
       this.message = "";
+      this.saveMessages();
+      this.messages02 = JSON.parse(localStorage.getItem('messages02'));
+    },
+    saveMessages() {
+      let parsed02 = JSON.stringify(this.messages02);
+      localStorage.setItem("messages02", parsed02);
+    },
+    deleteMessage(id) {
+      this.messages02 = this.messages02.filter((it) => it.id != id);
+      localStorage.setItem("messages02")
     },
   },
 };
@@ -89,18 +102,26 @@ export default {
   color: white;
   border-radius: 5px;
 }
-.massages {
+.massages__list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.massages > li {
+.massages__list > li {
   padding: 10px;
 }
-.massages > li > span {
+.massages__list > li > span {
   font-weight: 500;
 }
-.massages > li:nth-child(odd) {
+.massages__list > li:nth-child(odd) {
   background: #99e0a9;
+}
+.indent{
+  min-height: 60px;
+  width: 100%;
+}
+.btndel{
+  margin-left: 700px;
+  margin-bottom: 0px ;
 }
 </style>

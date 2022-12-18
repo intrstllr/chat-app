@@ -2,12 +2,19 @@
   <div id="mainList">
     <header>
       <ul class="massagesList">
-        <li v-for="msg in messages" :key="msg.id">{{ msg.body }}</li>
+        <li v-for="msg in messages" :key="msg.id">
+          {{ msg.body
+          }}<span
+            ><button class="btndel" @click.prevent="deleteMessage(msg.id)">
+              delete
+            </button></span
+          >
+        </li>
       </ul>
-
+      <div class="indent"></div>
       <form class="form">
         <div class="name">user1</div>
-        <input type="text" class="pole" autocomplete="off" v-model="message"/>
+        <input type="text" class="pole" autocomplete="off" v-model="message" />
         <button class="btn" @click.prevent="sendMessage">send</button>
       </form>
     </header>
@@ -19,7 +26,8 @@ export default {
   data() {
     return {
       message: "",
-      messages: [],
+      messages: localStorage.getItem('messages') ? 
+      JSON.parse(localStorage.getItem('messages')) : []
     };
   },
   methods: {
@@ -29,15 +37,17 @@ export default {
       msg.body = this.message;
       this.messages.push(msg);
       this.message = "";
+      this.saveMessages();
     },
-  saveMessages(){
-    let parsed = JSON.stringify(this.messages);
-    localStorage.setItem('messages', parsed);
-  }
+    saveMessages() {
+      let parsed = JSON.stringify(this.messages);
+      setInterval(localStorage.setItem("messages", parsed));
+    },
+    deleteMessage(id) {
+      this.messages = this.messages.filter((it) => it.id != id);
+      this.saveMessages()
+    }, 
   },
-  
-
-
 };
 </script>
 <style scoped>
@@ -107,5 +117,13 @@ export default {
 }
 .massagesList > li:nth-child(odd) {
   background: #aeb9d6;
+}
+.indent {
+  min-height: 60px;
+  width: 100%;
+}
+.btndel {
+  margin-left: 700px;
+  margin-bottom: 0px;
 }
 </style>
