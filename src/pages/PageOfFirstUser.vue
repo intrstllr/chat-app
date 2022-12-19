@@ -49,7 +49,7 @@ export default {
     }, 
   },
   computed:{
-    messages: function{
+    messages: function(){
       return []
     }
   }
