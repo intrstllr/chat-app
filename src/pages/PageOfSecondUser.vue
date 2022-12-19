@@ -2,7 +2,7 @@
   <div  id="mainList">   
     <header>
       <ul class="massages__list">
-        <li v-for="msg02 in messages02" :key="msg02.id">{{ msg02.body }}
+        <li v-for="msg in messages" :key="msg.id">{{ msg.body }}
           <span><button class="btndel" @click.prevent="deleteMessage(msg.id)">
             delete</button></span></li>
       </ul>
@@ -21,27 +21,26 @@ export default {
   data() {
     return {
       message: "",
-      messages02: localStorage.getItem('messages02') ? 
+      messages: localStorage.getItem('messages02') ? 
       JSON.parse(localStorage.getItem('messages02')) : []
     };
   },
   methods: {
     sendMessage() {
-      let msg02 = {};
-      msg02.id = Date.now();
-      msg02.body = this.message;
-      this.messages02.push(msg02);
+      let msg = {};
+      msg.id = Date.now();
+      msg.body = this.message;
+      this.messages.push(msg);
       this.message = "";
       this.saveMessages();
-      this.messages02 = JSON.parse(localStorage.getItem('messages02'));
     },
     saveMessages() {
-      let parsed02 = JSON.stringify(this.messages02);
-      localStorage.setItem("messages02", parsed02);
+      let parsed = JSON.stringify(this.messages);
+      localStorage.setItem("messages02", parsed);
     },
     deleteMessage(id) {
-      this.messages02 = this.messages02.filter((it) => it.id != id);
-      localStorage.setItem("messages02")
+      this.messages = this.messages.filter((it) => it.id != id);
+      this.saveMessages()
     },
   },
 };

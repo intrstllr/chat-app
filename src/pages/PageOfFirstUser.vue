@@ -48,6 +48,11 @@ export default {
       this.saveMessages()
     }, 
   },
+  computed:{
+    messages: function{
+      return []
+    }
+  }
 };
 </script>
 <style scoped>
