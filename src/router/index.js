@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import accountUser1 from "../pages/PageOfFirstUser.vue";
-
+import accountUser2 from "../pages/PageOfSecondUser.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -13,7 +13,7 @@ const router = createRouter({
       path: "/page2",
       name: "account2",
 
-      component: () => import("../pages/PageOfSecondUser.vue"),
+      component:accountUser2
     },
   ],
 });

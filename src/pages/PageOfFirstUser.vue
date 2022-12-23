@@ -2,13 +2,8 @@
   <div id="mainList">
     <header>
       <ul class="massagesList">
-        <li v-for="msg in messages" :key="msg.id">
-          {{ msg.body
-          }}<span
-            ><button class="btndel" @click.prevent="deleteMessage(msg.id)">
-              delete
-            </button></span
-          >
+        <li v-for="msg in messages" :key="msg.id">{{ msg.body}}
+          <span><button class="btndel" @click.prevent="deleteMessage(msg.id)">delete</button></span>
         </li>
       </ul>
       <div class="indent"></div>
@@ -38,20 +33,26 @@ export default {
       this.messages.push(msg);
       this.message = "";
       this.saveMessages();
+      location.reload();
     },
     saveMessages() {
       let parsed = JSON.stringify(this.messages);
       setInterval(localStorage.setItem("messages", parsed));
+
     },
     deleteMessage(id) {
       this.messages = this.messages.filter((it) => it.id != id);
-      this.saveMessages()
+      this.saveMessages();
+      location.reload();
     }, 
-  },
-  computed:{
-    messages: function(){
-      return []
+    methodRefreshPage() {
+      // ...
+      location.reload();
+      // ...
     }
+  },
+  mounted(){
+    setInterval(() => localStorage.getItem('messages'),1000);
   }
 };
 </script>

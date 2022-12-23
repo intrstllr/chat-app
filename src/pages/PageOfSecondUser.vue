@@ -3,14 +3,14 @@
     <header>
       <ul class="massages__list">
         <li v-for="msg in messages" :key="msg.id">{{ msg.body }}
-          <span><button class="btndel" @click.prevent="deleteMessage(msg.id)">
+          <span><button class="btndel" @click.prevent="deleteMessage(msg.id)" click.prevent="methodForcesUpdate()">
             delete</button></span></li>
       </ul>
       <div class="indent"></div>
       <form class="form">
         <div class="name">user2</div>
         <input type="text" class="pole" autocomplete="off" v-model="message" />
-        <button class="btn" @click.prevent="sendMessage">send</button>
+        <button class="btn" @click.prevent="sendMessage" click.prevent="methodForcesUpdate()">send</button>
       </form>
     </header>
   </div>
@@ -21,8 +21,8 @@ export default {
   data() {
     return {
       message: "",
-      messages: localStorage.getItem('messages02') ? 
-      JSON.parse(localStorage.getItem('messages02')) : []
+      messages: localStorage.getItem('messages') ? 
+      JSON.parse(localStorage.getItem('messages')) : []
     };
   },
   methods: {
@@ -33,16 +33,27 @@ export default {
       this.messages.push(msg);
       this.message = "";
       this.saveMessages();
+      location.reload();
+
     },
     saveMessages() {
       let parsed = JSON.stringify(this.messages);
-      localStorage.setItem("messages02", parsed);
+      localStorage.setItem("messages", parsed);
     },
     deleteMessage(id) {
       this.messages = this.messages.filter((it) => it.id != id);
-      this.saveMessages()
+      this.saveMessages();
+      location.reload();
     },
+    methodRefreshPage() {
+      // ...
+      location.reload();
+      // ...
+    }
   },
+  mounted(){
+    setInterval(() => localStorage.getItem('messages'),1000);
+  }
 };
 </script>
 <style scoped>
