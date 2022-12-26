@@ -1,16 +1,31 @@
 <template>
-  <div  id="mainList">   
+  <div id="mainList">
     <header>
-      <ul class="massages__list">
-        <li v-for="msg in messages" :key="msg.id">{{ msg.body }}
-          <span><button class="btndel" @click.prevent="deleteMessage(msg.id)" click.prevent="methodForcesUpdate()">
-            delete</button></span></li>
-      </ul>
+        <div class="messages__List">
+          <div v-for="msg in messages" :key="msg.id" class="mess_list">
+            {{ msg.body }}
+            <div class="body_btn_del">
+              <button class="btndel" @click.prevent="deleteMessage(msg.id)">
+                Delete
+              </button>
+              <div class="time"></div>
+            </div>
+          </div>
+      </div>
       <div class="indent"></div>
       <form class="form">
         <div class="name">user2</div>
-        <input type="text" class="pole" autocomplete="off" v-model="message" />
-        <button class="btn" @click.prevent="sendMessage" click.prevent="methodForcesUpdate()">send</button>
+        <input
+          type="text"
+          class="input_for_messages"
+          autocomplete="off"
+          v-model="message"
+        />
+        <button
+          class="btnSend"
+          @click.prevent="sendMessage">
+          Send
+        </button>
       </form>
     </header>
   </div>
@@ -21,8 +36,9 @@ export default {
   data() {
     return {
       message: "",
-      messages: localStorage.getItem('messages') ? 
-      JSON.parse(localStorage.getItem('messages')) : []
+      messages: localStorage.getItem("messages")
+        ? JSON.parse(localStorage.getItem("messages"))
+        : [],
     };
   },
   methods: {
@@ -33,8 +49,6 @@ export default {
       this.messages.push(msg);
       this.message = "";
       this.saveMessages();
-      location.reload();
-
     },
     saveMessages() {
       let parsed = JSON.stringify(this.messages);
@@ -43,17 +57,11 @@ export default {
     deleteMessage(id) {
       this.messages = this.messages.filter((it) => it.id != id);
       this.saveMessages();
-      location.reload();
     },
-    methodRefreshPage() {
-      // ...
-      location.reload();
-      // ...
-    }
   },
-  mounted(){
-    setInterval(() => localStorage.getItem('messages'),1000);
-  }
+  mounted() {
+    setInterval(() => localStorage.getItem("messages"), 1000);
+  },
 };
 </script>
 <style scoped>
@@ -63,7 +71,6 @@ export default {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
-
 
 .form {
   position: fixed;
@@ -90,7 +97,7 @@ export default {
   font-weight: 300;
 }
 
-.pole {
+.input_for_messages {
   height: 35px;
   border-radius: 5px;
   border: none;
@@ -100,7 +107,7 @@ export default {
   width: 100%;
   outline: none;
 }
-.btn {
+.btnSend {
   background: green;
   border: none;
   width: 100px;
@@ -112,26 +119,21 @@ export default {
   color: white;
   border-radius: 5px;
 }
-.massages__list {
+.messages__List {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin-top: 10px;
+  padding: 5px;
 }
-.massages__list > li {
-  padding: 10px;
-}
-.massages__list > li > span {
-  font-weight: 500;
-}
-.massages__list > li:nth-child(odd) {
-  background: #99e0a9;
-}
-.indent{
+.indent {
   min-height: 60px;
   width: 100%;
 }
-.btndel{
+.btndel {
   margin-left: 700px;
-  margin-bottom: 0px ;
+  margin-bottom: 0px;
+}
+.mess_list{
+  padding: 16px;
+  background: rgb(106, 233, 95);
 }
 </style>

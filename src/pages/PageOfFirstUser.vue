@@ -1,16 +1,27 @@
 <template>
   <div id="mainList">
     <header>
-      <ul class="massagesList">
-        <li v-for="msg in messages" :key="msg.id">{{ msg.body}}
-          <span><button class="btndel" @click.prevent="deleteMessage(msg.id)">delete</button></span>
-        </li>
-      </ul>
+      <div>
+        <div class="messages__List">
+          <div v-for="msg in messages" :key="msg.id" class="mess_list">
+            {{ msg.body }}
+            <div class="body_btn_del">
+              <button class="btndel" @click.prevent="deleteMessage(msg.id)">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="indent"></div>
       <form class="form">
         <div class="name">user1</div>
-        <input type="text" class="pole" autocomplete="off" v-model="message" />
-        <button class="btn" @click.prevent="sendMessage">send</button>
+        <input
+          type="text"
+          class="input_for_messages"
+          autocomplete="off"
+          v-model="message"/>
+        <button class="btnSend" @click.prevent="sendMessage">Send</button>
       </form>
     </header>
   </div>
@@ -21,8 +32,9 @@ export default {
   data() {
     return {
       message: "",
-      messages: localStorage.getItem('messages') ? 
-      JSON.parse(localStorage.getItem('messages')) : []
+      messages: localStorage.getItem("messages")
+        ? JSON.parse(localStorage.getItem("messages"))
+        : [],
     };
   },
   methods: {
@@ -33,27 +45,19 @@ export default {
       this.messages.push(msg);
       this.message = "";
       this.saveMessages();
-      location.reload();
     },
     saveMessages() {
       let parsed = JSON.stringify(this.messages);
       setInterval(localStorage.setItem("messages", parsed));
-
     },
     deleteMessage(id) {
       this.messages = this.messages.filter((it) => it.id != id);
       this.saveMessages();
-      location.reload();
-    }, 
-    methodRefreshPage() {
-      // ...
-      location.reload();
-      // ...
-    }
+    },
   },
-  mounted(){
-    setInterval(() => localStorage.getItem('messages'),1000);
-  }
+  mounted() {
+    setInterval(() => localStorage.getItem("messages"), 1000);
+  },
 };
 </script>
 <style scoped>
@@ -88,7 +92,7 @@ export default {
   font-weight: 300;
 }
 
-.pole {
+.input_for_messages {
   height: 35px;
   border-radius: 5px;
   border: none;
@@ -98,7 +102,7 @@ export default {
   width: 100%;
   outline: none;
 }
-.btn {
+.btnSend {
   background: blue;
   border: none;
   width: 100px;
@@ -110,19 +114,10 @@ export default {
   color: white;
   border-radius: 5px;
 }
-.massagesList {
+.messages__List {
   list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.massagesList > li {
-  padding: 10px;
-}
-.massagesList > li > span {
-  font-weight: 500;
-}
-.massagesList > li:nth-child(odd) {
-  background: #aeb9d6;
+  margin-top: 10px;
+  padding: 5px;
 }
 .indent {
   min-height: 60px;
@@ -131,5 +126,9 @@ export default {
 .btndel {
   margin-left: 700px;
   margin-bottom: 0px;
+}
+.mess_list{
+  padding: 16px;
+  background: rgb(126, 142, 231);
 }
 </style>

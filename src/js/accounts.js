@@ -12,6 +12,5 @@ const user2 ={
     username:"secondUser",
     status:false
 }
-
-localStorage.getItem("messages");
-localStorage.getItem("messages");
+let strUsers = JSON.stringify(this.user1,this.user2);
+localStorage.setItem("messages", strUsers);
