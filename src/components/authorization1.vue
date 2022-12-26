@@ -1,42 +1,64 @@
 <template>
-  <div class="authorization">
-    <div class="body_authorization">
-      <form class="form_authorization">
-        <label class="label_login">Login</label>
-        <input v-model="login" type="text" class="input_login" />
-        <label class="label_password">Password</label>
-        <input v-model="password" type="text" class="input_password" />
-        <div v-if="fail" class="fail_authorization">Try again</div>
-        <div class="help_For_Authorization">
-          <button @click.prevent="btnForgotPassword" class="btnForgotPass">
-            Help
-          </button>
-          <button
-            @click="onLogin"
-            @keydown.enter.prevent="onLogin"
-            class="btnLogin"
-          >
-            Login
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <v-row justify="center">
+    <v-dialog v-model="dialog" persistent max-width="600px">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn color="primary" dark v-bind="attrs" v-on="on">
+          Login
+        </v-btn>
+      </template>
+      <v-card>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field label="Login" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  label="Password"
+                  type="password"
+                  required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="dialog = false">
+            Close
+          </v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false">
+            login
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-row>
 </template>
-
 <script>
-export default{
-    data(){
-        return {
-            login:"",
-            password:"",
-            
-        }
+export default {
+  data() {
+    return {
+      login: "",
+      password: "",
+      authorized:false
+    };
+  },
+  methods:{
+    userData() {
+      let authUser1 = {};
+      authUser1.id = 01;
+      authUser1.loginUs1 = 'admin'
+      authUser1.passwordUs1 = '123456'
+    },
+    loginVerification() {
+      if (this.login = this.loginUs1) {
+        this.authorized = True; 
+      }else{
+        this.authorized = False;
+      }
     }
-}
-
-
-
-
-
+  }
+};
 </script>

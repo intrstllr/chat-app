@@ -1,26 +1,25 @@
 <template>
-  <div id="mainList">
+  <div  v-show = 'authorized = true' >
     <header>
       <div>
         <div class="messages__List">
           <div v-for="msg in messages" :key="msg.id" class="mess_list">
             {{ msg.body }}
-            <div class="body_btn_del">
               <button class="btndel" @click.prevent="deleteMessage(msg.id)">
-                Delete
+              Х
               </button>
-            </div>
           </div>
         </div>
       </div>
-      <div class="indent"></div>
+      <div class="indent__for__form"></div>
       <form class="form">
         <div class="name">user1</div>
         <input
           type="text"
           class="input_for_messages"
           autocomplete="off"
-          v-model="message"/>
+          v-model="message"
+        />
         <button class="btnSend" @click.prevent="sendMessage">Send</button>
       </form>
     </header>
@@ -119,16 +118,33 @@ export default {
   margin-top: 10px;
   padding: 5px;
 }
-.indent {
+.indent__for__form {
   min-height: 60px;
   width: 100%;
 }
 .btndel {
-  margin-left: 700px;
-  margin-bottom: 0px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: #faa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  border: #faa;
 }
-.mess_list{
+.btndel:hover {
+  background-color: #f00;
+}
+.mess_list {
   padding: 16px;
   background: rgb(126, 142, 231);
+  border-radius: 20px;
+  width: 48%;
+  margin-top: 5px;
 }
 </style>
