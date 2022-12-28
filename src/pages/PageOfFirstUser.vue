@@ -1,6 +1,7 @@
 <template>
-  <div  v-show = 'authorized = true' >
-    <header>
+  <div>
+    <authorization1 v-if="!isAuth" @authorized="isAuth = true"/>
+    <header v-else>
       <div>
         <div class="messages__List">
           <div v-for="msg in messages" :key="msg.id" class="mess_list">
@@ -23,17 +24,24 @@
         <button class="btnSend" @click.prevent="sendMessage">Send</button>
       </form>
     </header>
+
   </div>
 </template>
 
 <script>
+import authorization1 from '../components/authorization1.vue';
+
 export default {
+  components: {
+    authorization1
+  },
   data() {
     return {
       message: "",
       messages: localStorage.getItem("messages")
         ? JSON.parse(localStorage.getItem("messages"))
         : [],
+      isAuth: false,
     };
   },
   methods: {

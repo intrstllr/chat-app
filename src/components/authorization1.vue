@@ -1,40 +1,36 @@
 <template>
-  <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="600px">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on">
-          Login
-        </v-btn>
-      </template>
-      <v-card>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field label="Login" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                  label="Password"
-                  type="password"
-                  required
-                ></v-text-field>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">
-            Close
-          </v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">
-            login
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
+  <div class="authorization">
+    <div class="authorization__body">
+      <form class="authorization__form" @keydown.enter.prevent="">
+        <label for="" class="authorization__login-label">Login</label>
+        <input v-model="login" type="text" class="authorization__login-input" />
+        <label for="" class="authorization__password-label"
+          >Password</label
+        >
+        <input
+          v-model="password"
+          type="password"
+          class="authorization__password-input"
+        />
+
+        <div class="authorization__btns-group">
+          <button
+            @click.prevent="onForgotPasswordClick"
+            class="authorization__forgive-btn"
+          >
+            Help
+          </button>
+          <button
+            @click.prevent="loginVerification"
+            @keydown.enter.prevent="loginVerification"
+            class="authorization__login-btn"
+          >
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -42,21 +38,27 @@ export default {
     return {
       login: "",
       password: "",
-      authorized:false
+      authorized:false,
     };
   },
   methods:{
     userData() {
-      let authUser1 = {};
-      authUser1.id = 01;
-      authUser1.loginUs1 = 'admin'
-      authUser1.passwordUs1 = '123456'
+      return {
+        id: 1,
+        login: "admin",
+        password: "123456"
+      }; 
     },
     loginVerification() {
-      if (this.login = this.loginUs1) {
-        this.authorized = True; 
+      const user = this.userData();
+      const anotherUser = user;
+      console.log(user === anotherUser);
+      if (this.login === user.login,this.password === user.password) {
+        this.authorized === true;
+        localStorage.setItem('login',this.authorized)
+        this.$emit('authorized', true)
       }else{
-        this.authorized = False;
+        this.authorized === false;
       }
     }
   }
