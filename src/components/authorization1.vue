@@ -33,6 +33,8 @@
   </div>
 </template>
 <script>
+import { onMounted } from 'vue';
+
 export default {
   data() {
     return {
@@ -51,16 +53,20 @@ export default {
     },
     loginVerification() {
       const user = this.userData();
-      const anotherUser = user;
-      console.log(user === anotherUser);
-      if (this.login === user.login,this.password === user.password) {
-        this.authorized === true;
-        localStorage.setItem('login',this.authorized)
+      if (this.login === user.login && this.password === user.password) {
+        this.authorized = true;
+         localStorage.setItem('login',JSON.stringify(this.authorized));
         this.$emit('authorized', true)
       }else{
-        this.authorized === false;
+        this.authorized = false;
+      }
+    },
+    logOut() {
+      if (this.authorized) {
+        this.authorized = false;
+        localStorage.setItem('login',JSON.stringify(this.authorized))
       }
     }
-  }
+  },
 };
 </script>

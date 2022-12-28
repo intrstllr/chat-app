@@ -6,12 +6,13 @@
         <div class="messages__List">
           <div v-for="msg in messages" :key="msg.id" class="mess_list">
             {{ msg.body }}
-              <button class="btndel" @click.prevent="deleteMessage(msg.id)">
+              <div class="btndel" @click.prevent="deleteMessage(msg.id)">
               Х
-              </button>
+              </div>
           </div>
         </div>
       </div>
+      <button class="logOut__btn" @click='logOut'></button>
       <div class="indent__for__form"></div>
       <form class="form">
         <div class="name">user1</div>
@@ -41,7 +42,7 @@ export default {
       messages: localStorage.getItem("messages")
         ? JSON.parse(localStorage.getItem("messages"))
         : [],
-      isAuth: false,
+      isAuth: localStorage.getItem('login'),
     };
   },
   methods: {
@@ -154,5 +155,26 @@ export default {
   border-radius: 20px;
   width: 48%;
   margin-top: 5px;
+}
+.logOut__btn{
+  background: blue;
+  border: none;
+  width: 100px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  color: white;
+  border-radius: 5px;  background: blue;
+  border: none;
+  width: 100px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  color: white;
+  border-radius: 5px;
 }
 </style>
