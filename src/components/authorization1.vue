@@ -55,8 +55,8 @@ export default {
       const user = this.userData();
       if (this.login === user.login && this.password === user.password) {
         this.authorized = true;
-         localStorage.setItem('login',JSON.stringify(this.authorized));
-        this.$emit('authorized', true)
+        localStorage.setItem('login',JSON.stringify(this.authorized));
+        this.$emit('authorized', true);
       }else{
         this.authorized = false;
       }
@@ -65,6 +65,7 @@ export default {
       if (this.authorized) {
         this.authorized = false;
         localStorage.setItem('login',JSON.stringify(this.authorized))
+        this.$emit('authorized',false)
       }
     }
   },

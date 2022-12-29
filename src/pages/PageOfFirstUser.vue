@@ -1,18 +1,17 @@
 <template>
   <div>
-    <authorization1 v-if="!isAuth" @authorized="isAuth = true"/>
-    <header v-else>
+    <authorization1 v-if="!isAuth" @authorized="isAuth = true" />
+    <body v-else>
       <div>
         <div class="messages__List">
           <div v-for="msg in messages" :key="msg.id" class="mess_list">
             {{ msg.body }}
-              <div class="btndel" @click.prevent="deleteMessage(msg.id)">
-              Х
-              </div>
+            <div class="btndel" @click.prevent="deleteMessage(msg.id)">Х</div>
+            <div class="time">{{new Date(msg.timeSend).toLocaleTimeString()}}</div>
           </div>
         </div>
       </div>
-      <button class="logOut__btn" @click='logOut'></button>
+      <button class="logOut__btn"   >LogOut</button>
       <div class="indent__for__form"></div>
       <form class="form">
         <div class="name">user1</div>
@@ -24,17 +23,16 @@
         />
         <button class="btnSend" @click.prevent="sendMessage">Send</button>
       </form>
-    </header>
-
+    </body>
   </div>
 </template>
 
 <script>
-import authorization1 from '../components/authorization1.vue';
+import authorization1 from "../components/authorization1.vue";
 
 export default {
   components: {
-    authorization1
+    authorization1,
   },
   data() {
     return {
@@ -42,14 +40,17 @@ export default {
       messages: localStorage.getItem("messages")
         ? JSON.parse(localStorage.getItem("messages"))
         : [],
-      isAuth: localStorage.getItem('login'),
+      isAuth: localStorage.getItem("login"),
     };
   },
   methods: {
+
     sendMessage() {
       let msg = {};
       msg.id = Date.now();
       msg.body = this.message;
+      msg.timeSend = new Date()
+      msg.loginUser = 
       this.messages.push(msg);
       this.message = "";
       this.saveMessages();
@@ -156,7 +157,7 @@ export default {
   width: 48%;
   margin-top: 5px;
 }
-.logOut__btn{
+.logOut__btn {
   background: blue;
   border: none;
   width: 100px;
@@ -166,7 +167,8 @@ export default {
   align-items: center;
   outline: none;
   color: white;
-  border-radius: 5px;  background: blue;
+  border-radius: 5px;
+  background: blue;
   border: none;
   width: 100px;
   height: 35px;
@@ -176,5 +178,6 @@ export default {
   outline: none;
   color: white;
   border-radius: 5px;
+
 }
 </style>
