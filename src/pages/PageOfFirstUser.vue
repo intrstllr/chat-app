@@ -1,35 +1,44 @@
 <template>
-  <div>
-    <authorization1 v-if="!isAuth" @authorized="isAuth = true" />
-    <body v-else>
-      <div>
-        <div class="messages__List">
-          <div v-for="msg in messages" :key="msg.id" class="mess_list">
-            {{ msg.body }}
-            <div class="btndel" @click.prevent="deleteMessage(msg.id)">Х</div>
-            <div class="time">{{new Date(msg.timeSend).toLocaleTimeString()}}</div>
+  <header>
+    <div class="logOut__btn" @click="logOut()">Log Out</div>
+  </header>
+  <authorization1 v-if="!isAuth" @authorized="isAuth = true" />
+  <div class="content" v-else>
+    <div class="list_body">
+      <div class="messages__List">
+        <div
+          v-for="msg in messages"
+          :key="msg.id"
+          class="mess_list"
+          :style="{ background: msg.color }"
+        >
+          {{ msg.body }}
+          <div class="btndel" @click.prevent="deleteMessage(msg.id)">Х</div>
+          <div class="time">
+            {{ new Date(msg.timeSend).toLocaleTimeString() }}
+          </div>
+          <div class="whoSend">
+            {{ msg.loginUser }}
           </div>
         </div>
       </div>
-      <button class="logOut__btn"   >LogOut</button>
-      <div class="indent__for__form"></div>
-      <form class="form">
-        <div class="name">user1</div>
-        <input
-          type="text"
-          class="input_for_messages"
-          autocomplete="off"
-          v-model="message"
-        />
-        <button class="btnSend" @click.prevent="sendMessage">Send</button>
-      </form>
-    </body>
+    </div>
+    <div class="indent__for__form"></div>
+    <form class="form">
+      <div class="name">user1</div>
+      <input
+        type="text"
+        class="input_for_messages"
+        autocomplete="off"
+        v-model="message"
+      />
+      <button class="btnSend" @click.prevent="sendMessage">Send</button>
+    </form>
   </div>
 </template>
 
 <script>
 import authorization1 from "../components/authorization1.vue";
-
 export default {
   components: {
     authorization1,
@@ -40,17 +49,17 @@ export default {
       messages: localStorage.getItem("messages")
         ? JSON.parse(localStorage.getItem("messages"))
         : [],
-      isAuth: localStorage.getItem("login"),
+      isAuth: localStorage.getItem("login1"),
     };
   },
   methods: {
-
     sendMessage() {
       let msg = {};
       msg.id = Date.now();
       msg.body = this.message;
-      msg.timeSend = new Date()
-      msg.loginUser = 
+      msg.timeSend = new Date();
+      msg.loginUser = "admin1";
+      msg.color = "#7e8ee7";
       this.messages.push(msg);
       this.message = "";
       this.saveMessages();
@@ -62,6 +71,10 @@ export default {
     deleteMessage(id) {
       this.messages = this.messages.filter((it) => it.id != id);
       this.saveMessages();
+    },
+    logOut() {
+      localStorage.removeItem("login1");
+      location.reload();
     },
   },
   mounted() {
@@ -127,10 +140,13 @@ export default {
   list-style: none;
   margin-top: 10px;
   padding: 5px;
+  position: relative;
 }
 .indent__for__form {
   min-height: 60px;
   width: 100%;
+  position: fixed;
+  height: 30px;
 }
 .btndel {
   position: absolute;
@@ -145,17 +161,17 @@ export default {
   align-items: center;
   color: #fff;
   cursor: pointer;
-  border: #faa;
 }
 .btndel:hover {
   background-color: #f00;
 }
 .mess_list {
   padding: 16px;
-  background: rgb(126, 142, 231);
   border-radius: 20px;
-  width: 48%;
   margin-top: 5px;
+  max-width: 620px;
+  overflow-wrap: break-word;
+  min-width: 620px;
 }
 .logOut__btn {
   background: blue;
@@ -178,6 +194,19 @@ export default {
   outline: none;
   color: white;
   border-radius: 5px;
+  margin-left: 600px;
+  margin-top: 15px;
+  max-height: 35px;
+  position: fixed;
+}
+.list_body {
+  min-height: 200px;
+}
+.content {
+  min-height: 1300px;
+}
+header{
+  max-height: 200px;
 
 }
 </style>
