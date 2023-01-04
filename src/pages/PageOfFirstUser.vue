@@ -174,8 +174,6 @@ export default {
   min-width: 620px;
 }
 .logOut__btn {
-  background: blue;
-  border: none;
   width: 100px;
   height: 35px;
   display: flex;
@@ -201,6 +199,7 @@ export default {
 }
 .list_body {
   min-height: 200px;
+  margin-top: 200px;
 }
 .content {
   min-height: 1300px;

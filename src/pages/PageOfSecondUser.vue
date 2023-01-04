@@ -1,5 +1,5 @@
 <template>
-  <header class="header__logOut">
+  <header>
     <div class="logOut__btn" @click="logOut()">Log Out</div>
   </header>
   <authorization2 v-if="!isAuth" @authorized="isAuth = true" />
@@ -25,7 +25,7 @@
     </div>
     <div class="indent__for__form"></div>
     <form class="form">
-      <div class="name">user2</div>
+      <div class="name">user1</div>
       <input
         type="text"
         class="input_for_messages"
@@ -56,8 +56,8 @@ export default {
     sendMessage() {
       let msg = {};
       msg.id = Date.now();
-      msg.timeSend = new Date();
       msg.body = this.message;
+      msg.timeSend = new Date();
       msg.loginUser = "admin2";
       msg.color = "#2ff02f";
       this.messages.push(msg);
@@ -66,7 +66,7 @@ export default {
     },
     saveMessages() {
       let parsed = JSON.stringify(this.messages);
-      localStorage.setItem("messages", parsed);
+      setInterval(localStorage.setItem("messages", parsed));
     },
     deleteMessage(id) {
       this.messages = this.messages.filter((it) => it.id != id);
@@ -103,7 +103,7 @@ export default {
 }
 .name {
   height: 35px;
-  background: green;
+  background:  #18bd2e;
   padding: 15px;
   border-radius: 30px;
   display: flex;
@@ -125,7 +125,7 @@ export default {
   outline: none;
 }
 .btnSend {
-  background: #2ff02f;
+  background: #18bd2e;
   border: none;
   width: 100px;
   height: 35px;
@@ -174,7 +174,7 @@ export default {
   min-width: 620px;
 }
 .logOut__btn {
-  background: green;
+  background:  #18bd2e;
   border: none;
   width: 100px;
   height: 35px;
@@ -184,7 +184,6 @@ export default {
   outline: none;
   color: white;
   border-radius: 5px;
-  background: green;
   border: none;
   width: 100px;
   height: 35px;
@@ -203,9 +202,10 @@ export default {
   min-height: 200px;
 }
 .content {
-  min-height: 200px;
+  min-height: 1300px;
 }
 header{
   max-height: 200px;
+
 }
 </style>

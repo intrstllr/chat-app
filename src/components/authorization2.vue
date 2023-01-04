@@ -1,18 +1,28 @@
 <template>
   <div class="authorization__body">
-    <form class="authorization__form" @keydown.enter.prevent="">
-        <label for="" class="authorization__login-label">Login</label>
-        <input v-model="login" type="text" class="authorization__login-input" />
-      <div>
-        <label for="" class="authorization__password-label">Password</label>
+    <form class="authorization__form__" @keydown.enter.prevent="">
+      <div class="div__login">
+        <input
+          v-model="login"
+          type="text"
+          class="authorization__login-input"
+          placeholder="Login"
+        />
+      </div>
+      <div class="div__password">
         <input
           v-model="password"
           type="password"
           class="authorization__password-input"
+          placeholder="Password"
         />
       </div>
       <div class="authorization__btns-group">
-        <button @click.prevent="" class="authorization__forgive-btn">
+        <button
+          @click.prevent=""
+          class="authorization__forgive-btn"
+          @click="helpForAuthorization()"
+        >
           Help
         </button>
         <button
@@ -53,6 +63,9 @@ export default {
         this.authorized2 = false;
       }
     },
+    helpForAuthorization() {
+      alert(` login:admin2 \n password:654321`);
+    },
   },
 };
 </script>
@@ -60,12 +73,65 @@ export default {
 <style>
 .authorization__body {
   margin-bottom: 900px;
+  background-color:#91e795;
+  height: 350px;
+  width: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-.authorization__form {
-  background: white;
-  float: left;
-  width: calc(100% - 40px);
-  padding: 30px;
-  border-radius: 0 20px 20px 0;
+.authorization__form__ {
+  border-radius: 5px;
+  background-color: aliceblue;
+}
+.authorization__login-input {
+  margin-bottom: 50px;
+  size: 30px;
+  width: 250px;
+  height: 35px;
+  border-radius: 5px;
+  margin-left: 50px;
+  margin-top: 25px;
+  background-color: aliceblue;
+}
+.authorization__password-input {
+  margin-bottom: 50px;
+  size: 30px;
+  width: 250px;
+  height: 35px;
+  border-radius: 5px;
+  margin-left: 50px;
+  margin-bottom: 75px;
+  background-color: aliceblue;
+  margin-top: 25px;
+}
+.authorization__forgive-btn{
+  background-color: aliceblue;
+  border-radius: 5px;
+  width: 60px;
+  height: 30px;
+}
+.authorization__login-btn{
+  background-color: aliceblue;
+  border-radius: 5px;
+  width: 60px;
+  height: 30px;
+  margin-left: 270px;
+}
+.div__login{
+  background: #10dd76;
+  max-height: 100px;
+  border-radius: 5px;
+}
+.div__password{
+  background: #10dd76;
+  max-height: 100px;
+  border-radius: 5px;
+}
+.authorization__btns-group{
+  background-color:#91e795;
 }
 </style>

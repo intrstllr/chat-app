@@ -33,8 +33,8 @@ nav {
 .header__container{
     max-width: 1300px;
     max-height: 30px;
-    padding: 0 10px;
     margin: 0 auto;
+
 }
 .header__body{
     display: flex;
@@ -70,12 +70,9 @@ nav a:first-of-type {
   }
   nav {
     text-align: left;
-    margin-left: -1rem;
     font-size: 1rem;
     display: flex;
     align-items: center;
-    padding: 1rem 0;
-    margin-top: 1rem;
   }
 }
 
