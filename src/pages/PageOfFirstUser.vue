@@ -25,7 +25,7 @@
     </div>
     <div class="indent__for__form"></div>
     <form class="form">
-      <div class="name">user1</div>
+
       <input
         type="text"
         class="input_for_messages"
@@ -101,19 +101,6 @@ export default {
   align-items: center;
   backdrop-filter: blur(10px);
 }
-.name {
-  height: 35px;
-  background: blue;
-  padding: 15px;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 14px;
-  font-weight: 300;
-}
-
 .input_for_messages {
   height: 35px;
   border-radius: 5px;
@@ -143,10 +130,9 @@ export default {
   position: relative;
 }
 .indent__for__form {
-  min-height: 60px;
+  min-height: 120px;
   width: 100%;
-  position: fixed;
-  height: 30px;
+  height: 120px;
 }
 .btndel {
   position: absolute;
@@ -192,20 +178,16 @@ export default {
   outline: none;
   color: white;
   border-radius: 5px;
-  margin-left: 600px;
-  margin-top: 15px;
+  margin-left: 1500px;
+  margin-top: 10px;
   max-height: 35px;
   position: fixed;
 }
-.list_body {
-  min-height: 200px;
-  margin-top: 200px;
-}
-.content {
-  min-height: 1300px;
+.content{
+  margin-left: 50%;
+  display: flex;
 }
 header{
   max-height: 200px;
-
 }
 </style>

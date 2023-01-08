@@ -1,10 +1,9 @@
 <template>
   <header>
-    <div class="logOut__btn" @click="logOut()">Log Out</div>
+  <div class="logOut__btn" @click="logOut()">Log Out</div> 
   </header>
   <authorization2 v-if="!isAuth" @authorized="isAuth = true" />
   <div class="content" v-else>
-    <div class="list_body">
       <div class="messages__List">
         <div
           v-for="msg in messages"
@@ -21,11 +20,9 @@
             {{ msg.loginUser }}
           </div>
         </div>
-      </div>
     </div>
     <div class="indent__for__form"></div>
     <form class="form">
-      <div class="name">user1</div>
       <input
         type="text"
         class="input_for_messages"
@@ -101,18 +98,7 @@ export default {
   align-items: center;
   backdrop-filter: blur(10px);
 }
-.name {
-  height: 35px;
-  background:  #18bd2e;
-  padding: 15px;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 14px;
-  font-weight: 300;
-}
+
 
 .input_for_messages {
   height: 35px;
@@ -193,16 +179,13 @@ export default {
   outline: none;
   color: white;
   border-radius: 5px;
-  margin-left: 600px;
-  margin-top: 15px;
+  margin-left: 1500px;
+  margin-top: 10px;
   max-height: 35px;
   position: fixed;
 }
 .list_body {
   min-height: 200px;
-}
-.content {
-  min-height: 1300px;
 }
 header{
   max-height: 200px;

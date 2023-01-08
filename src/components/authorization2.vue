@@ -1,137 +1,140 @@
 <template>
-  <div class="authorization__body">
-    <form class="authorization__form__" @keydown.enter.prevent="">
-      <div class="div__login">
-        <input
-          v-model="login"
-          type="text"
-          class="authorization__login-input"
-          placeholder="Login"
-        />
+  <div class="wrapper__form">
+          <div class="content__form">
+              <form class="authorization__form__container" @keydown.enter.prevent="">
+                  <div class="div__login_blue">
+                      <input
+                          v-model="login"
+                          type="text"
+                          class="authorization__login-input_blue"
+                          placeholder="Login"
+                              />
+                  </div>
+                  <div class="div__password_blue">
+                      <input
+                          v-model="password"
+                          type="password"
+                          class="authorization__password-input_blue"
+                          placeholder="Password"
+                      />
+                  </div>
+                  <div class="authorization__btns-group_blue">
+                      <button
+                          @click.prevent=""
+                          class="authorization__forgive-btn_blue"
+                          @click="helpForAuthorization()"
+                      >
+                          Help
+                      </button>
+                      <button
+                          @click.prevent="loginVerification"
+                          @keydown.enter.prevent="loginVerification"
+                          class="authorization__login-btn_blue"
+                      >
+                          Login
+                      </button>
+                  </div>
+              </form>
       </div>
-      <div class="div__password">
-        <input
-          v-model="password"
-          type="password"
-          class="authorization__password-input"
-          placeholder="Password"
-        />
       </div>
-      <div class="authorization__btns-group">
-        <button
-          @click.prevent=""
-          class="authorization__forgive-btn"
-          @click="helpForAuthorization()"
-        >
-          Help
-        </button>
-        <button
-          @click.prevent="loginVerification"
-          @keydown.enter.prevent="loginVerification"
-          class="authorization__login-btn"
-        >
-          Login
-        </button>
-      </div>
-    </form>
-  </div>
-</template>
-<script>
-export default {
-  data() {
-    return {
-      login: "",
-      password: "",
-      authorized2: false,
-    };
-  },
-  methods: {
-    userData() {
+  </template>
+  <script>
+  export default {
+    data() {
       return {
-        id: 2,
-        login: "admin2",
-        password: "654321",
+        login: "",
+        password: "",
+        authorized1: false,
       };
     },
-    loginVerification() {
-      const user = this.userData();
-      if (this.login === user.login && this.password === user.password) {
-        this.authorized2 = true;
-        localStorage.setItem("login2", JSON.stringify(this.authorized2));
-        this.$emit("authorized", true);
-      } else {
-        this.authorized2 = false;
-      }
+    methods: {
+      userData() {
+        return {
+          id: 1,
+          login: "admin",
+          password: "123456",
+        };
+      },
+      loginVerification() {
+        const user = this.userData();
+        if (this.login === user.login && this.password === user.password) {
+          this.authorized1 = true;
+          localStorage.setItem("login1", JSON.stringify(this.authorized1));
+          this.$emit("authorized", true);
+        } else {
+          this.authorized1 = false;
+        }
+      },
+      helpForAuthorization() {
+        alert(` login:admin \n password: 123456`);
+      },
     },
-    helpForAuthorization() {
-      alert(` login:admin2 \n password:654321`);
-    },
-  },
-};
-</script>
-
-<style>
-.authorization__body {
-  margin-bottom: 900px;
-  background-color:#91e795;
-  height: 350px;
-  width: 460px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.authorization__form__ {
-  border-radius: 5px;
-  background-color: aliceblue;
-}
-.authorization__login-input {
-  margin-bottom: 50px;
-  size: 30px;
-  width: 250px;
-  height: 35px;
-  border-radius: 5px;
-  margin-left: 50px;
-  margin-top: 25px;
-  background-color: aliceblue;
-}
-.authorization__password-input {
-  margin-bottom: 50px;
-  size: 30px;
-  width: 250px;
-  height: 35px;
-  border-radius: 5px;
-  margin-left: 50px;
-  margin-bottom: 75px;
-  background-color: aliceblue;
-  margin-top: 25px;
-}
-.authorization__forgive-btn{
-  background-color: aliceblue;
-  border-radius: 5px;
-  width: 60px;
-  height: 30px;
-}
-.authorization__login-btn{
-  background-color: aliceblue;
-  border-radius: 5px;
-  width: 60px;
-  height: 30px;
-  margin-left: 270px;
-}
-.div__login{
-  background: #10dd76;
-  max-height: 100px;
-  border-radius: 5px;
-}
-.div__password{
-  background: #10dd76;
-  max-height: 100px;
-  border-radius: 5px;
-}
-.authorization__btns-group{
-  background-color:#91e795;
-}
-</style>
+  };
+  </script>
+  
+  <style>
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .authorization__form__container {
+    max-width: 1250px;
+    margin: 0px auto;
+    background-color: hsl(0, 0%, 90%);
+    width: 450px;
+    border-radius: 10px;
+  }
+  .wrapper__form {
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+  }
+  .content__form {
+    flex: 1 1 auto;
+    margin-top: 40vh;
+    margin-left: 0vh;
+  }
+  .div__login_blue {
+    padding: 30px;
+    max-width: 1500px;
+    width: 390px;
+  }
+  .div__password_blue {
+    padding: 30px;
+    max-width: 1500px;
+    width: 390px;
+  }
+  .authorization__btns-group_blue {
+    padding: 30px;
+    max-width: 1500px;
+    width: 390px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+  .authorization__login-input_blue {
+    width: 350px;
+    border-radius: 5px;
+    height: 30px;
+  }
+  .authorization__password-input_blue {
+    width: 350px;
+    border-radius: 5px;
+    height: 30px;
+  }
+  .authorization__forgive-btn_blue {
+    height: 30px;
+    width: 50px;
+    margin-top: 0px;
+  }
+  .authorization__login-btn_blue {
+    height: 30px;
+    width: 50px;
+    margin-top: 0px;
+  }
+  
+  </style>

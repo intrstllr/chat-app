@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header>
     <div class="header__container">
       <div class="header__body">
         <nav class="header_nav">
@@ -7,73 +7,41 @@
           <RouterLink class="page_2" to="/page2">accountUser2</RouterLink>
         </nav>
       </div>
-
     </div>
   </header>
   <RouterView />
 </template>
 
-<script></script>
+<script>
+
+</script>
 
 <style scoped>
 header {
-  width:100%;
-  background-color: #fff;
-  max-height: 30px;
+  width:100vh;
+  background-color: aliceblue;
+  height: 10%;
+  margin: 0px;
+  padding: 0px;
 }
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 5px;
-  height: inherit;
-  display: flex;
+.page_2{
+  margin-left: 10px;
 }
-.header__container{
-    max-width: 1300px;
-    max-height: 30px;
-    margin: 0 auto;
-
+.page_1{
+  margin-left: 100px;
 }
 .header__body{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0;
-    margin-bottom: 930px;
-    height: 100px;
-}
-nav a.router-link-exact-active {
-  color: var(--color-text);
+  background-color:aliceblue;
+  width: 1652px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+body , div{
+  width: 100vh;
 }
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+#app{
+  margin-right: 0px;
 }
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-  nav {
-    text-align: left;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-  }
-}
-
 </style>
