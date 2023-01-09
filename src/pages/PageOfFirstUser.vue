@@ -1,39 +1,39 @@
 <template>
-  <header>
-    <div class="logOut__btn" @click="logOut()">Log Out</div>
-  </header>
   <authorization1 v-if="!isAuth" @authorized="isAuth = true" />
-  <div class="content" v-else>
-    <div class="list_body">
-      <div class="messages__List">
-        <div
-          v-for="msg in messages"
-          :key="msg.id"
-          class="mess_list"
-          :style="{ background: msg.color }"
-        >
-          {{ msg.body }}
-          <div class="btndel" @click.prevent="deleteMessage(msg.id)">Х</div>
-          <div class="time">
-            {{ new Date(msg.timeSend).toLocaleTimeString() }}
-          </div>
-          <div class="whoSend">
-            {{ msg.loginUser }}
+  <div v-else>
+    <header>
+      <div class="logOut__btn" @click="logOut()">Log Out</div>
+    </header>
+    <body class="content" >
+      <div class="list_body">
+        <div class="messages__List">
+          <div
+            v-for="msg in messages"
+            :key="msg.id"
+            class="mess_list"
+            :style="{ background: msg.color }"
+          >
+            {{ msg.body }}
+            <div class="btndel" @click.prevent="deleteMessage(msg.id)">Х</div>
+            <div class="time">
+              {{ new Date(msg.timeSend).toLocaleTimeString() }}
+            </div>
+            <div class="whoSend">
+              {{ msg.loginUser }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="indent__for__form"></div>
-    <form class="form">
-
-      <input
-        type="text"
-        class="input_for_messages"
-        autocomplete="off"
-        v-model="message"
-      />
-      <button class="btnSend" @click.prevent="sendMessage">Send</button>
-    </form>
+      <form class="form">
+        <input
+          type="text"
+          class="input_for_messages"
+          autocomplete="off"
+          v-model="message"
+        />
+        <button class="btnSend" @click.prevent="sendMessage">Send</button>
+      </form>
+    </body>
   </div>
 </template>
 
@@ -183,11 +183,11 @@ export default {
   max-height: 35px;
   position: fixed;
 }
-.content{
+.content {
   margin-left: 50%;
   display: flex;
 }
-header{
+header {
   max-height: 200px;
 }
 </style>

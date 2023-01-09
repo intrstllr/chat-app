@@ -1,9 +1,10 @@
 <template>
-  <header>
-  <div class="logOut__btn" @click="logOut()">Log Out</div> 
-  </header>
   <authorization2 v-if="!isAuth" @authorized="isAuth = true" />
-  <div class="content" v-else>
+  <div v-else>
+    <header>
+      <div class="logOut__btn" @click="logOut()">Log Out</div>
+    </header>
+    <div class="content">
       <div class="messages__List">
         <div
           v-for="msg in messages"
@@ -20,17 +21,17 @@
             {{ msg.loginUser }}
           </div>
         </div>
+      </div>
+      <form class="form">
+        <input
+          type="text"
+          class="input_for_messages"
+          autocomplete="off"
+          v-model="message"
+        />
+        <button class="btnSend" @click.prevent="sendMessage">Send</button>
+      </form>
     </div>
-    <div class="indent__for__form"></div>
-    <form class="form">
-      <input
-        type="text"
-        class="input_for_messages"
-        autocomplete="off"
-        v-model="message"
-      />
-      <button class="btnSend" @click.prevent="sendMessage">Send</button>
-    </form>
   </div>
 </template>
 
@@ -99,7 +100,6 @@ export default {
   backdrop-filter: blur(10px);
 }
 
-
 .input_for_messages {
   height: 35px;
   border-radius: 5px;
@@ -160,7 +160,7 @@ export default {
   min-width: 620px;
 }
 .logOut__btn {
-  background:  #18bd2e;
+  background: #18bd2e;
   border: none;
   width: 100px;
   height: 35px;
@@ -187,8 +187,7 @@ export default {
 .list_body {
   min-height: 200px;
 }
-header{
+header {
   max-height: 200px;
-
 }
 </style>

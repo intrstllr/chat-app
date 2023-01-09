@@ -1,4 +1,3 @@
-
 <template>
   <header>
     <div class="header__container">
@@ -13,18 +12,7 @@
 </template>
 
 
-
-<script>
-
-</script>
-
-<style scoped>
-body , div{
-  width: 100vh;
-}
-#app{
-  margin-right: 0px;
-}
+<style>
 
 header{
   background-color: aliceblue;
@@ -60,5 +48,4 @@ header{
   margin-right: 50px;
 
 }
-
 </style>
