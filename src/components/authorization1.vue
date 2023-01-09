@@ -73,9 +73,13 @@ export default {
 </script>
 
 <style>
+*{
+  margin: 0px;
+  padding: 0px;
+}
 body {
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
 }
 
 .authorization__form__container {
@@ -84,11 +88,13 @@ body {
   background-color: hsl(0, 0%, 90%);
   width: 450px;
   border-radius: 10px;
+  margin-left: 950px;
 
 }
 .wrapper__form {
   min-height: 100vh;
   overflow: hidden;
+  width: 2100px;
   display: flex;
   flex-direction: column;
   margin-right: 0%;
@@ -96,7 +102,7 @@ body {
 }
 .content__form {
   flex: 1 1 auto;
-  margin-top: 500px;
+  margin-top: 400px;
   margin-left: 0vh;
 }
 .div__login_blue {

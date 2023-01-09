@@ -1,4 +1,3 @@
-
 <template>
   <header>
     <div class="header__container">
@@ -10,6 +9,7 @@
       </div>
     </div>
   </header>
+  <RouterView />
 </template>
 
 
@@ -19,7 +19,7 @@
 </script>
 
 <style scoped>
-body , div{
+body {
   width: 100vh;
 }
 #app{
@@ -59,6 +59,6 @@ header{
 .page_2 {
   margin-right: 50px;
 
-}
+} 
 
 </style>
