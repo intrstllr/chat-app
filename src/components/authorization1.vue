@@ -64,6 +64,7 @@ export default {
       } else {
         this.authorized1 = false;
       }
+      location.reload();
     },
     helpForAuthorization() {
       alert(` login:admin \n password: 123456`);
@@ -83,18 +84,15 @@ body {
 }
 
 .authorization__form__container {
-  max-width: 1250px;
   margin: 0px auto;
   background-color: hsl(0, 0%, 90%);
-  width: 450px;
+  width: 40vh;
   border-radius: 10px;
-  margin-left: 950px;
-
+  margin-left: 77vh;
 }
 .wrapper__form {
   min-height: 100vh;
   overflow: hidden;
-  width: 2100px;
   display: flex;
   flex-direction: column;
   margin-right: 0%;
@@ -102,34 +100,35 @@ body {
 }
 .content__form {
   flex: 1 1 auto;
-  margin-top: 400px;
+  margin-top: 30vh;
   margin-left: 0vh;
+  width: 100vh;
 }
 .div__login_blue {
   padding: 30px;
-  max-width: 1500px;
-  width: 390px;
+  max-width: 100vh;
+  width: 34vh;
 }
 .div__password_blue {
   padding: 30px;
-  max-width: 1500px;
-  width: 390px;
+  max-width: 100vh;
+  width: 34vh;
 }
 .authorization__btns-group_blue {
   padding: 30px;
-  max-width: 1500px;
-  width: 390px;
+  max-width: 100vh;
+  width: 34vh;
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
 }
 .authorization__login-input_blue {
-  width: 350px;
+  width: 35vh;
   border-radius: 5px;
   height: 30px;
 }
 .authorization__password-input_blue {
-  width: 350px;
+  width: 35vh;
   border-radius: 5px;
   height: 30px;
 }

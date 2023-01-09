@@ -1,27 +1,27 @@
 <template>
-  <div class="wrapper__form__second">
-          <div class="content__form__second">
-              <form class="authorization__form__container__second" @keydown.enter.prevent="">
-                  <div class="div__login___second">
+  <div class="wrapper__form_second">
+          <div class="content__form_second">
+              <form class="authorization__form__container_second" @keydown.enter.prevent="">
+                  <div class="div__login_second">
                       <input
                           v-model="login"
                           type="text"
-                          class="authorization__login-input___second"
+                          class="authorization__login-input_second"
                           placeholder="Login"
                               />
                   </div>
-                  <div class="div__password__second">
+                  <div class="div__password_second">
                       <input
                           v-model="password"
                           type="password"
-                          class="authorization__password-input__second"
+                          class="authorization__password-input_second"
                           placeholder="Password"
                       />
                   </div>
-                  <div class="authorization__btns-group___second">
+                  <div class="authorization__btns-group_second">
                       <button
                           @click.prevent=""
-                          class="authorization__forgive-btn__second"
+                          class="authorization__forgive-btn_second"
                           @click="helpForAuthorization()"
                       >
                           Help
@@ -64,6 +64,7 @@
         } else {
           this.authorized1 = false;
         }
+        location.reload();
       },
       helpForAuthorization() {
         alert(` login:admin2 \n password: 654321`);
@@ -73,68 +74,74 @@
   </script>
   
   <style>
-  body {
-    padding: 0;
-    margin: 0;
-  }
-  
-  .authorization__form__container__second {
-    max-width: 1250px;
-    margin: 0px auto;
-    background-color: hsl(0, 0%, 90%);
-    width: 450px;
-    border-radius: 10px;
-  }
-  .wrapper__form__second {
-    min-height: 100vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    margin: 0px;
-    padding: 0px;
-  }
-  .content__form__second {
-    flex: 1 1 auto;
-    margin-top: 40vh;
-    margin-left: 0vh;
-  }
-  .div__login_second{
-    padding: 30px;
-    max-width: 1500px;
-    width: 390px;
-  }
-  .div__password_second {
-    padding: 30px;
-    max-width: 1500px;
-    width: 390px;
-  }
-  .authorization__btns-group_second{
-    padding: 30px;
-    max-width: 1500px;
-    width: 390px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
-  }
-  .authorization__login-input_second {
-    width: 350px;
-    border-radius: 5px;
-    height: 30px;
-  }
-  .authorization__password-input_second {
-    width: 350px;
-    border-radius: 5px;
-    height: 30px;
-  }
-  .authorization__forgive-btn_second {
-    height: 30px;
-    width: 50px;
-    margin-top: 0px;
-  }
-  .authorization__login-btn_second {
-    height: 30px;
-    width: 50px;
-    margin-top: 0px;
-  }
-  
-  </style>
+*{
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.authorization__form__container_second {
+  margin: 0px auto;
+  background-color: hsl(0, 0%, 90%);
+  width: 40vh;
+  border-radius: 10px;
+  margin-left: 77vh;
+
+}
+.wrapper__form_second {
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-right: 0%;
+  padding: 0px;
+}
+.content__form_second {
+  flex: 1 1 auto;
+  margin-top: 30vh;
+  margin-left: 0vh;
+  width: 100vh;
+}
+.div__login_second {
+  padding: 30px;
+  max-width: 100vh;
+  width: 34vh;
+}
+.div__password_second {
+  padding: 30px;
+  max-width: 100vh;
+  width: 34vh;
+}
+.authorization__btns-group_second {
+  padding: 30px;
+  max-width: 100vh;
+  width: 34vh;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+.authorization__login-input_second {
+  width: 35vh;
+  border-radius: 5px;
+  height: 30px;
+}
+.authorization__password-input_second {
+  width: 35vh;
+  border-radius: 5px;
+  height: 30px;
+}
+.authorization__forgive-btn_second {
+  height: 30px;
+  width: 50px;
+  margin-top: 0px;
+}
+.authorization__login-btn_second {
+  height: 30px;
+  width: 50px;
+  margin-top: 0px;
+}
+
+</style>

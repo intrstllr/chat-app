@@ -1,27 +1,29 @@
 <template>
   <authorization1 v-if="!isAuth" @authorized="isAuth = true" />
-  <div v-else>
+  <div class="visible__content" v-else>
     <header>
       <div class="logOut__btn" @click="logOut()">Log Out</div>
     </header>
-    <body class="content" >
+    <div class="content">
       <div class="list_body">
         <div class="messages__List">
           <div
             v-for="msg in messages"
             :key="msg.id"
             class="mess_list"
+            :class="{ right_mess_list: msg.loginUser === `admin2` }"
             :style="{ background: msg.color }"
           >
             {{ msg.body }}
             <div class="btndel" @click.prevent="deleteMessage(msg.id)">Х</div>
-            <div class="time">
+            <div class="time" style="margin-top: 25px">
               {{ new Date(msg.timeSend).toLocaleTimeString() }}
             </div>
             <div class="whoSend">
               {{ msg.loginUser }}
             </div>
           </div>
+        <div class="indent"></div>
         </div>
       </div>
       <form class="form">
@@ -33,7 +35,7 @@
         />
         <button class="btnSend" @click.prevent="sendMessage">Send</button>
       </form>
-    </body>
+    </div>
   </div>
 </template>
 
@@ -89,6 +91,12 @@ export default {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+.visible__content {
+  width: 100vh;
+  height: 100vh;
+  margin: 0vh;
+  padding: 0vh;
+}
 .form {
   position: fixed;
   left: 0;
@@ -128,15 +136,14 @@ export default {
   margin-top: 10px;
   padding: 5px;
   position: relative;
-}
-.indent__for__form {
-  min-height: 120px;
-  width: 100%;
-  height: 120px;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
 }
 .btndel {
-  position: absolute;
+  margin-right: 0;
   top: 4px;
+  float: right;
   right: 4px;
   border-radius: 50%;
   width: 30px;
@@ -147,6 +154,7 @@ export default {
   align-items: center;
   color: #fff;
   cursor: pointer;
+  position: relative;
 }
 .btndel:hover {
   background-color: #f00;
@@ -155,20 +163,13 @@ export default {
   padding: 16px;
   border-radius: 20px;
   margin-top: 5px;
-  max-width: 620px;
   overflow-wrap: break-word;
-  min-width: 620px;
+  width: 50vh;
 }
 .logOut__btn {
+  background: blue;
   width: 100px;
   height: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  outline: none;
-  color: white;
-  border-radius: 5px;
-  background: blue;
   border: none;
   width: 100px;
   height: 35px;
@@ -181,13 +182,23 @@ export default {
   margin-left: 1500px;
   margin-top: 10px;
   max-height: 35px;
-  position: fixed;
 }
 .content {
   margin-left: 50%;
   display: flex;
+  width: 100vh;
 }
 header {
   max-height: 200px;
+}
+.list_body {
+  width: 100vh;
+}
+.right_mess_list {
+  margin-left: 50vh;
+}
+.indent {
+  width: 100vh;
+  height: 60px;
 }
 </style>
