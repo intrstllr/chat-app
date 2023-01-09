@@ -1,6 +1,6 @@
 <template>
-  <authorization1 v-if="!isAuth" @authorized="isAuth = true" />
-  <div v-else>
+  <!-- <authorization1 v-if="!isAuth" @authorized="isAuth = true" /> -->
+  <div>
     <header>
       <div class="logOut__btn" @click="logOut()">Log Out</div>
     </header>
