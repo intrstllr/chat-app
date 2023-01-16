@@ -84,13 +84,13 @@ body {
   max-width: 1000px;
 }
 
-.authorization__btns-group_blue {
+.authorization__btns-group{
   display: flex;
   justify-content: space-between;
-  padding: 30px;
+  padding: 30px 20px;
 }
 
-.authorization__login-input_blue {
+.authorization__login-input{
   width: 300px;
   max-width: 300px;
   border-radius: 5px;
@@ -100,7 +100,7 @@ body {
   margin-top: 40px;
 }
 
-.authorization__password-input_blue {
+.authorization__password-input{
   width: 300px;
   max-width: 300px;
   border-radius: 5px;
@@ -110,13 +110,13 @@ body {
   margin-top: 60px;
 }
 
-.authorization__forgive-btn_blue {
+.authorization__forgive-btn {
   height: 30px;
   width: 50px;
   cursor: pointer;
 }
 
-.authorization__login-btn_blue {
+.authorization__login-btn {
   height: 30px;
   width: 50px;
   cursor: pointer;
