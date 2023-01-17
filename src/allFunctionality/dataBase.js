@@ -9,21 +9,21 @@ export default(()=>{
                 {
                     id: 0, 
                     login: "admin",
-                    password: "admin", 
+                    password: "123456", 
                     username: "First Admin",
                     status: false, 
                     userChats: [
-                        Date.now()
+                        Date.now(),
                     ]
                 },
                 {
                     id: 1, 
                     login: "admin2", 
-                    password: "admin2", 
+                    password: "654321", 
                     username: "Second Admin",
                     status: false, 
                     userChats: [
-                        Date.now()
+                        Date.now(),
                     ]
                 },
             ],
