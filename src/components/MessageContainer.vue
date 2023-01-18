@@ -46,7 +46,8 @@ export default {
                 msg.body = this.message;
                 msg.color = "#7e8ee7";
                 msg.userId = authUserId;
-                this.addMessage();
+                this.$storage.addMessage(this.msg);
+                
             }
         },
     },

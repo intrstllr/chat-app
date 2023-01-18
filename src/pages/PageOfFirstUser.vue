@@ -1,25 +1,23 @@
 <template>
-    <ChatContent :user="user"/>
-    <authorization v-if="!authorizated" @succesfullAuth="succesfullAuth"/>
+    <authorization v-if="!authorizated" @AuthorizComplete='AuthorizComplete'/>
+    <MessageContainer v-else/>
 </template>
 
 <script>
 import authorization from "../components/Authorization.vue";
-import ChatContent from "../components/ChatContent.vue";
+
+import MessageContainer from "../components/MessageContainer.vue";
 export default {
-    props:{
-        authorizated:{
-            type:Boolean
-        }
-    },
     components: {
         authorization,
-        ChatContent,
+
+        MessageContainer
     },
     data() {
         return {
             data: this.$storage.data,
             user: null,
+            authorizated:true
         };
     },
     created() {
@@ -27,14 +25,15 @@ export default {
     },
     methods: {
         succesfullAuth(user) {
-            this.authorizated = true;
+            if(this.$storage.data.users.find(el => el)){
+
+            }
             this.$storage.updateFirstPageAuth(user.id);
             this.user = this.getUser();
         },
         getUser() {
-            if (this.data.firstPage.authUserId !== null) {
-                this.authorizated = true;
-                return this.$storage.getUserById(this.data.firstPage.authUserId);
+            if (this.data !== null) {
+                return this.$storage.getUserById(this.$storage.data.users);
             } else {
                 return null;
             }

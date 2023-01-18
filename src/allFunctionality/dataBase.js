@@ -1,37 +1,35 @@
-export default(()=>{
-    const KEY_FOR_LOCAL_STORAGE = "MMIS CHAT";
+export default (() => {
+    const KEY_FOR_LOCAL_STORAGE = "CHAT";
 
     let data = null;
 
-    if(!localStorage.getItem(KEY_FOR_LOCAL_STORAGE)){
+    if (!localStorage.getItem(KEY_FOR_LOCAL_STORAGE)) {
         data = {
             users: [
                 {
-                    id: 0, 
+                    id: 1,
                     login: "admin",
-                    password: "123456", 
+                    password: "123456",
                     username: "First Admin",
-                    status: false, 
-                    userChats: [
-                        Date.now(),
-                    ]
+                    status: false,
+                    userChats: [Date.now()],
+                    isAuthorized: false,
                 },
                 {
-                    id: 1, 
-                    login: "admin2", 
-                    password: "654321", 
+                    id: 2,
+                    login: "admin2",
+                    password: "654321",
                     username: "Second Admin",
-                    status: false, 
-                    userChats: [
-                        Date.now(),
-                    ]
+                    status: false,
+                    userChats: [Date.now()],
+                    isAuthorized: false,
                 },
             ],
             chats: [
                 {
                     id: Date.now(),
-                    messages:[],
-                }
+                    messages: [],
+                },
             ],
             firstPage: {
                 authUserId: null
@@ -42,79 +40,65 @@ export default(()=>{
         };
         updateLocalStorage();
     } else {
-        data = JSON.parse(localStorage.getItem(KEY_FOR_LOCAL_STORAGE)); 
+        data = JSON.parse(localStorage.getItem(KEY_FOR_LOCAL_STORAGE));
     }
 
-    function addMessage(chatId, msg){
-        data.chats.find(el => el.id === chatId).messages.push(msg);
+    function addMessage(msg) {
+        data.chats.find((el) => el.id === chatId).messages.push(msg);
         updateLocalStorage();
     }
-    function getUserById(userId){
-        return data.users.find(el => el.id === userId);
+    function getUserById(userId) {
+        return data.users.find((el) => el.id === userId);
     }
 
-    function getChatById(chatId){
-        return data.chats.find(el => el.id === chatId);
+    function getChatById(chatId) {
+        return data.chats.find((el) => el.id === chatId);
     }
 
-    function getUserByLogin(login=""){
-        return data.users.find(el => el.login === login);
+    function getUserByLogin(login = "") {
+        return data.users.find((el) => el.login === login);
     }
 
-    function createNewChat(firstUserId, secondUserId){
-        let newChat = {
-            id: Date.now(),
-            messages: [],
-        }
-        data.chats.push(newChat);
-        getUserById(firstUserId).userChats.push(newChat.id);
-        getUserById(secondUserId).userChats.push(newChat.id);
-        return newChat.id
+    function updateLocalStorage() {
+        localStorage.setItem(KEY_FOR_LOCAL_STORAGE, JSON.stringify(data));
     }
 
-    function updateLocalStorage(){
-        localStorage.setItem(KEY_FOR_LOCAL_STORAGE, JSON.stringify(data))
-    }
-
-    function updateFirstPageAuth(userId=null){
+    function updateFirstPageAuth(userId = null) {
         data.firstPage.authUserId = userId;
-        if(userId !== null){
+        if (userId !== null) {
             getUserById(userId).status = true;
         }
         updateLocalStorage();
     }
 
-    function updateSecondPageAuth(userId=null) {
+    function updateSecondPageAuth(userId = null) {
         data.secondPage.authUserId = userId;
-        if(userId !== null){
+        if (userId !== null) {
             getUserById(userId).status = true;
         }
         updateLocalStorage();
     }
 
-    function logOutFirstPage(userId){
+    function logOutFirstPage(userId) {
         updateFirstPageAuth();
         getUserById(userId).status = false;
         updateLocalStorage();
     }
-    function logOutSecondPage(userId){
+    function logOutSecondPage(userId) {
         updateSecondPageAuth();
         getUserById(userId).status = false;
         updateLocalStorage();
     }
 
-
-    return{
+    return {
         data,
         addMessage,
         getUserById,
         getChatById,
-        createNewChat,
         getUserByLogin,
         updateFirstPageAuth,
         updateSecondPageAuth,
         logOutFirstPage,
-        logOutSecondPage
-    }
-
+        logOutSecondPage,
+    };
 })();

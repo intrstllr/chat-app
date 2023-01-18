@@ -1,17 +1,21 @@
 <template>
     <AccessViaLinks></AccessViaLinks>
+    <div class="logOut" @click="logOut()"></div>
     <RouterView />
 </template>
 
 <script>
 import AccessViaLinks from "./components/AccessViaLinks.vue";
 export default {
-    components: { 
-        AccessViaLinks
+    components: {
+        AccessViaLinks,
     },
+    logOut(){
+        this.$storage.data.firstPage.authUserId = false;
+    }
 };
 </script>
-
+    
 <style scoped>
 * {
     font-family: "Roboto", sans-serif;
@@ -25,5 +29,10 @@ body {
 #app {
     width: 100%;
     margin-right: 0px;
+}
+.logOut{
+    background-color: black;
+    height: 50px;
+    width: 50px;
 }
 </style>

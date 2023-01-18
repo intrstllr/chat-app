@@ -45,16 +45,20 @@ export default {
             passwords: this.$storage.data.users.map((el) => {
                 return el.password;
             }),
-            authorized: false,
+            AuthorizComplete: false
         };
     },
     methods: {
         loginVerification() {
-            const user = this.$router.data.getUserByLogin(this.login);
-
+            const user = this.$storage.getUserByLogin(this.login);
             if (user.password === this.password && user.login === this.login) {
-                this.$emit("succesfullAuth", user);
+                this.AuthorizComplete = true;
+                this.$storage.data.firstPage.authUserId = user.id
             }
+            this.$emit('AuthorizComplete',user)
+            console.log(user)
+            console.log(this.AuthorizComplete)
+
         },
         helpForAuthorization() {
             alert(` Logins: ${this.logins}

@@ -3,7 +3,7 @@
         <div class="page__container">
             <div class="page__body">
                 <div class="page__leftside"></div>
-                <MessageContainer class="page__rightside" :authUserId="user.id" :chatId="chatId" />
+                <MessageContainer class="page__rightside" :authUserId="user.id" />
             </div>
         </div>
     </main>
@@ -28,4 +28,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
