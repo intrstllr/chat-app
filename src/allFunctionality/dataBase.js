@@ -31,12 +31,6 @@ export default (() => {
                     messages: [],
                 },
             ],
-            firstPage: {
-                authUserId: null
-            },
-            secondPage: {
-                authUserId: null
-            },
         };
         updateLocalStorage();
     } else {
@@ -44,7 +38,7 @@ export default (() => {
     }
 
     function addMessage(msg) {
-        data.chats.find((el) => el.id === chatId).messages.push(msg);
+        data.chats.messages.push(msg);
         updateLocalStorage();
     }
     function getUserById(userId) {
@@ -62,31 +56,13 @@ export default (() => {
     function updateLocalStorage() {
         localStorage.setItem(KEY_FOR_LOCAL_STORAGE, JSON.stringify(data));
     }
-
-    function updateFirstPageAuth(userId = null) {
-        data.firstPage.authUserId = userId;
-        if (userId !== null) {
-            getUserById(userId).status = true;
-        }
-        updateLocalStorage();
+    function logIn(userId){
+        getUserById(userId).isAuthorized = true;
+        updateLocalStorage()
     }
 
-    function updateSecondPageAuth(userId = null) {
-        data.secondPage.authUserId = userId;
-        if (userId !== null) {
-            getUserById(userId).status = true;
-        }
-        updateLocalStorage();
-    }
-
-    function logOutFirstPage(userId) {
-        updateFirstPageAuth();
-        getUserById(userId).status = false;
-        updateLocalStorage();
-    }
-    function logOutSecondPage(userId) {
-        updateSecondPageAuth();
-        getUserById(userId).status = false;
+    function logOut(userId) {
+        getUserById(userId).isAuthorized = false;
         updateLocalStorage();
     }
 
@@ -96,9 +72,7 @@ export default (() => {
         getUserById,
         getChatById,
         getUserByLogin,
-        updateFirstPageAuth,
-        updateSecondPageAuth,
-        logOutFirstPage,
-        logOutSecondPage,
+        logOut,
+        logIn,
     };
 })();

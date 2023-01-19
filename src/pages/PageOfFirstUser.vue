@@ -17,7 +17,6 @@ export default {
         return {
             data: this.$storage.data,
             user: null,
-            authorizated:true
         };
     },
     created() {

@@ -11,7 +11,7 @@ export default {
         AccessViaLinks,
     },
     logOut(){
-        this.$storage.data.firstPage.authUserId = false;
+        this.$storage.data.logOutFirstPage()
     }
 };
 </script>
