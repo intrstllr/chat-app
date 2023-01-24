@@ -10,7 +10,7 @@
     </div>
 </template>
 <script>
-import MessageInfo from "./MessageInfo.vue";
+import MessageInfo from "./messageInfo.vue";
 export default {
     components: {
         MessageInfo,
