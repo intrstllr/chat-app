@@ -1,124 +1,138 @@
 <template>
-  <div class="wrapper__form">
-    <div class="authorization__form__container">
-      <form class="content__form" @keydown.enter.prevent="">
-        <!-- <div class="div__login_blue"> -->
-        <input v-model="login" type="text" class="authorization__login-input" placeholder="Login" />
-        <!-- </div> -->
-        <!-- <div class="div__password_blue"> -->
-        <input v-model="password" type="password" class="authorization__password-input" placeholder="Password" />
-        <!-- </div> -->
-        <div class="authorization__btns-group">
-          <button @click.prevent="" class="authorization__forgive-btn" @click="helpForAuthorization()">
-            Help
-          </button>
-          <button @click.prevent="loginVerification" @keydown.enter.prevent="loginVerification"
-            class="authorization__login-btn">
-            Login
-          </button>
+    <div class="wrapper">
+        <div class="authorization_container">
+            <form  class="form_auth">
+                <!-- <div class="div__login_blue"> -->
+                <input v-model="login" type="text" class="login-input" placeholder="Login" />
+                <!-- </div> -->
+                <!-- <div class="div__password_blue"> -->
+                <input
+                    v-model="password"
+                    type="password"
+                    class="password-input"
+                    placeholder="Password"
+                />
+                <!-- </div> -->
+                <div class="btns-group">
+                    <button
+                        @click.prevent=""
+                        class="forgive-btn"
+                        @click="helpForAuthorization()"
+                    >
+                        Help
+                    </button>
+                    <button
+                        @click.prevent="loginVerification"
+                        @keydown.enter.prevent="loginVerification"
+                        class="login-btn"
+                    >
+                        Login
+                    </button>
+                </div>
+            </form>
         </div>
-      </form>
     </div>
-  </div>
 </template>
 <script>
 export default {
-  data() {
-    return {
-      login: "",
-      password: "",
-      logins: this.$storage.data.users.map(el => { return el.login }),
-      passwords: this.$storage.data.users.map(el => { return el.password }),
-      authorized: false,
-    };
-  },
-  methods: {
-    loginVerification() {
-      const user = this.$router.data.getUserByLogin(this.login);
-
+    props: { user: {}},
+    data() {
+        return {
+            login: "",
+            password: "",
+            authorized: false,
+        };
     },
-    helpForAuthorization() {
-      alert(` Logins: ${this.logins}
-            Passwords: ${this.passwords}`);
+    methods: {
+        loginVerification() {
+            if (this.user.password === this.password && this.user.login === this.login) {
+                this.$emit("UserFirstIsLogin");
+            }
+            if ("654321" === this.password && "admin2" === this.login) {
+                this.$emit("UserSecondIsLogin");
+            } else {
+                return { login: "", password: "" };
+            }
+        },
+        helpForAuthorization() {
+            alert(`  login: \r  admin,  admin2 
+    \n  password: \r  123456,  654321`);
+        },
     },
-  },
 };
 </script>
 
 <style>
 * {
-  margin: 0px;
-  padding: 0px;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-size: 19px;
 }
 
 body {
-  padding: 0px;
-  margin: 0px;
+    padding: 0px;
+    margin: 0px;
 }
 
-.content__form {
-  margin: 0 auto;
-  background-color: hsl(0, 0%, 90%);
-  width: 350px;
-  max-width: 400px;
-  border-radius: 10px;
-  min-width: 350px;
-  padding: 10px;
+.form_auth {
+    display: flex;
+    flex-direction: column;
 }
 
-.wrapper__form {
-  min-height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  margin-right: 0%;
-  padding: 0px;
+.wrapper {
+    height: 850px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-right: 0px;
+    padding: 0px;
 }
 
-.authorization__form__container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
-  margin: auto;
-  max-width: 1000px;
+.authorization_container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 350px;
+    height: 260px;
+    margin: auto;
+    background-color: antiquewhite;
+    border-radius: 15px;
 }
 
-.authorization__btns-group{
-  display: flex;
-  justify-content: space-between;
-  padding: 30px 20px;
+.btns-group {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 50px;
 }
 
-.authorization__login-input{
-  width: 300px;
-  max-width: 300px;
-  border-radius: 5px;
-  height: 30px;
-  padding-left: 10px;
-  margin-left: 20px;
-  margin-top: 40px;
+.login-input {
+    max-width: 70%;
+    width: 250px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
-.authorization__password-input{
-  width: 300px;
-  max-width: 300px;
-  border-radius: 5px;
-  padding-left: 10px;
-  height: 30px;
-  margin-left: 20px;
-  margin-top: 60px;
+.password-input {
+    max-width: 70%;
+    width: 250px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
-.authorization__forgive-btn {
-  height: 30px;
-  width: 50px;
-  cursor: pointer;
+.forgive-btn {
+    height: 30px;
+    width: 50px;
+    cursor: pointer;
 }
 
-.authorization__login-btn {
-  height: 30px;
-  width: 50px;
-  cursor: pointer;
+.login-btn {
+    height: 30px;
+    width: 50px;
+    cursor: pointer;
 }
 </style>
