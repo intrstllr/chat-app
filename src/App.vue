@@ -1,6 +1,5 @@
 <template>
     <AccessViaLinks></AccessViaLinks>
-    <div class="logOut" @click="logOut()"></div>
     <RouterView />
 </template>
 
@@ -10,14 +9,14 @@ export default {
     components: {
         AccessViaLinks,
     },
-    logOut(){
-        this.$storage.data.logOutFirstPage()
-    }
 };
 </script>
     
 <style scoped>
 * {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
     font-family: "Roboto", sans-serif;
 }
 body {
@@ -29,10 +28,5 @@ body {
 #app {
     width: 100%;
     margin-right: 0px;
-}
-.logOut{
-    background-color: black;
-    height: 50px;
-    width: 50px;
 }
 </style>
