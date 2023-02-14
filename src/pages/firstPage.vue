@@ -1,6 +1,10 @@
 <template>
-    <Authorization v-if="!authorized" @UserFirstIsLogin="complieteAuthoriz" :user="{login:'admin',password:'123456'}" />
-    <PageChat v-else @logout="logOut" :user="{id: '1'}"/>
+    <Authorization
+        v-if="!authorized"
+        @UserFirstIsLogin="complieteAuthoriz"
+        :user="{ login: 'admin', password: '123456' }"
+    />
+    <PageChat v-else @logout="logOut" :user="user" />
 </template>
 
 <script>
@@ -14,6 +18,9 @@ export default {
     data() {
         return {
             authorized: JSON.parse(localStorage.getItem("authfirst")),
+            user:{
+                id:1
+            }
         };
     },
     methods: {

@@ -1,24 +1,11 @@
 <template>
     <div class="wrapper">
         <div class="authorization_container">
-            <form  class="form_auth">
-                <!-- <div class="div__login_blue"> -->
+            <form class="form_auth">
                 <input v-model="login" type="text" class="login-input" placeholder="Login" />
-                <!-- </div> -->
-                <!-- <div class="div__password_blue"> -->
-                <input
-                    v-model="password"
-                    type="password"
-                    class="password-input"
-                    placeholder="Password"
-                />
-                <!-- </div> -->
+                <input v-model="password" type="password" class="password-input" placeholder="Password" />
                 <div class="btns-group">
-                    <button
-                        @click.prevent=""
-                        class="forgive-btn"
-                        @click="helpForAuthorization()"
-                    >
+                    <button @click.prevent="" class="forgive-btn" @click="helpForAuthorization()">
                         Help
                     </button>
                     <button
@@ -35,12 +22,18 @@
 </template>
 <script>
 export default {
-    props: { user: {}},
+    props: { user: {} },
     data() {
         return {
             login: "",
             password: "",
             authorized: false,
+            logins: Storage.data.users.map((el) => {
+                return el.login;
+            }),
+            passwords: Storage.data.users.map((el) => {
+                return el.password;
+            }),
         };
     },
     methods: {
@@ -55,10 +48,13 @@ export default {
             }
         },
         helpForAuthorization() {
-            alert(`  login: \r  admin,  admin2 
+            alert(`  login: \r  admin,  admin2
     \n  password: \r  123456,  654321`);
         },
     },
+    mounted(){
+        console.log('logins')
+    }
 };
 </script>
 
@@ -134,5 +130,10 @@ body {
     height: 30px;
     width: 50px;
     cursor: pointer;
+}
+.test {
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
 }
 </style>
