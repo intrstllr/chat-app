@@ -9,7 +9,7 @@
     </main>
 </template>
 
-<script>
+<script lang="js">
 import ChatContent from "./ChatContent.vue";
 
 export default {
@@ -17,14 +17,6 @@ export default {
         ChatContent,
     },
     props: { user: {}},
-    // data(){
-    //     let user1= JSON.parce(localStorage.getItem('authfirst'))
-    //     let user2= JSON.parce(localStorage.getItem('authsecond'))
-        
-    // },
-    // getUser(user1,user2){
-    //     if
-    // }
 };
 </script>
 <style>

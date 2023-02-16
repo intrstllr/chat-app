@@ -4,7 +4,7 @@
         @UserFirstIsLogin="complieteAuthoriz"
         :user="{ login: 'admin', password: '123456' }"
     />
-    <PageChat v-else @logout="logOut" :user="user" />
+    <PageChat v-else @logout="logOut" :user="{ id: '1' }" />
 </template>
 
 <script>
@@ -18,9 +18,6 @@ export default {
     data() {
         return {
             authorized: JSON.parse(localStorage.getItem("authfirst")),
-            user:{
-                id:1
-            }
         };
     },
     methods: {

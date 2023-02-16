@@ -5,7 +5,7 @@
         <div class="btn_del" @click.prevent="$emit('delete',message.id)">X</div>
     </div>
 </template>
-<script>
+<script lang="js">
 export default {
     props: {
         message: {

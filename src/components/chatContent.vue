@@ -5,11 +5,11 @@
         </div>
         <form>
             <input placeholder="write message" type="text" v-model="message" />
-            <button class="btn_send" @click.prevent="sendMessage()">send</button>
+            <button class="btn_send" @click.prevent="sendMessage">send</button>
         </form>
     </div>
 </template>
-<script>
+<script lang="js">
 import MessageInfo from "./messageInfo.vue";
 export default {
     components: {
@@ -19,7 +19,7 @@ export default {
     data() {
         return {
             message: "",
-            allMessages: localStorage.getItem("chat") ? JSON.parse(localStorage.getItem("chat")) : [],
+            allMessages: this.$storage.data.chat ? this.$storage.data.chat : []
         };
     },
     methods: {
@@ -32,19 +32,14 @@ export default {
             };
             this.allMessages.push(msg);
             this.message = "";
-            this.saveMessage();
-        },
-        saveMessage() {
-            let messageLocalstorage = JSON.stringify(this.allMessages);
-            setInterval(localStorage.setItem("chat", messageLocalstorage));
+            this.$storage.addMessage(this.msg)
         },
         deleteMessage(id) {
             this.allMessages = this.allMessages.filter((el) => el.id != id);
             this.saveMessage();
+            console.log(this.allMessages)
         },
-    },
-    mounted() {
-        // console.log(user)
+
     },
 };
 </script>

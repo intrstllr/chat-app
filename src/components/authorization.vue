@@ -5,7 +5,7 @@
                 <input v-model="login" type="text" class="login-input" placeholder="Login" />
                 <input v-model="password" type="password" class="password-input" placeholder="Password" />
                 <div class="btns-group">
-                    <button @click.prevent="" class="forgive-btn" @click="helpForAuthorization()">
+                    <button @click.prevent="test" class="forgive-btn" @click="helpAuthorization">
                         Help
                     </button>
                     <button
@@ -27,13 +27,14 @@ export default {
         return {
             login: "",
             password: "",
-            authorized: false,
-            logins: Storage.data.users.map((el) => {
+            logins: this.$storage.data.users.map((el) => {
                 return el.login;
             }),
-            passwords: Storage.data.users.map((el) => {
+            passwords: this.$storage.data.users.map((el) => {
                 return el.password;
             }),
+            authorized: false,
+            
         };
     },
     methods: {
@@ -47,14 +48,14 @@ export default {
                 return { login: "", password: "" };
             }
         },
-        helpForAuthorization() {
-            alert(`  login: \r  admin,  admin2
+        helpAuthorization() {
+            alert(`  login: \r  admin,  admin2 
     \n  password: \r  123456,  654321`);
         },
+        test() {
+            console.log(this.passwords);
+        },
     },
-    mounted(){
-        console.log('logins')
-    }
 };
 </script>
 
@@ -130,10 +131,5 @@ body {
     height: 30px;
     width: 50px;
     cursor: pointer;
-}
-.test {
-    width: 100px;
-    height: 100px;
-    background-color: aqua;
 }
 </style>
