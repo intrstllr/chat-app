@@ -3,8 +3,8 @@
             <div class="header__container">
                 <div class="header__body">
                     <nav class="header__nav">
-                        <RouterLink class="page_1" to="/page1">FirstUser</RouterLink>
-                        <RouterLink class="page_2" to="/page2">SecondUser</RouterLink>
+                        <RouterLink class="page_1" to="/first">FirstUser</RouterLink>
+                        <RouterLink class="page_2" to="/second">SecondUser</RouterLink>
                     </nav>
                 </div>
             </div>

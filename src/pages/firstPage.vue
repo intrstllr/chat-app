@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <Authorization
         v-if="!authorized"
         @UserFirstIsLogin="complieteAuthoriz"
@@ -36,5 +36,31 @@ export default {
 <style>
 * {
     font-family: "Roboto", sans-serif;
+}
+</style> -->
+<template>
+    <pageChat />
+</template>
+
+<script>
+import pageChat from "../components/testPageChat.vue";
+export default {
+    components: {
+        pageChat,
+    },
+    data() {
+        return {};
+    },
+};
+</script>
+<style>
+* {
+    margin: 0px;
+}
+.btn {
+    background-color: black;
+    width: 150px;
+    height: 50px;
+    margin-top: 50px;
 }
 </style>

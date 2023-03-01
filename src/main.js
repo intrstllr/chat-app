@@ -1,11 +1,11 @@
-import { createApp } from 'vue'
+import { createApp, reactive} from 'vue'
 import App from './App.vue'
 import router from './router'
-import model from "./domain/model"
+import Storage from './domain/model'
 
 const app = createApp(App)
 
-app.config.globalProperties.$storage = model
+app.config.globalProperties.$globals = { storage: reactive(Storage)}
 
 app.use(router)
 

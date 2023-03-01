@@ -1,19 +1,17 @@
 <template>
-    <links/>
-    <RouterView />
+  <links/>
+  <RouterView />
 </template>
 
 <script>
 import links from "./components/links.vue";
-import test from "./components/test.vue";
 export default {
-    components: {
-        links,
-        test
-    },
+  components: {
+      links,
+  },
 };
 </script>
-    
+
 <style scoped>
 * {
     margin: 0px;
@@ -30,7 +28,5 @@ body {
 #app {
     width: 100%;
     margin-right: 0px;
-    margin: 0%;
-    padding: 0%;
 }
 </style>
